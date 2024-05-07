@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Chat Room: {{ room.name }}</title>
+</head>
+<body>
+    <h1>Chat Room: {{ room.name }}</h1>
+    <div id="messages">
+        {% for message in messages %}
+            <p>{{ message.user }}: {{ message.content }}</p>
+        {% endfor %}
+    </div>
+    <form method="post" action="{% url 'send_message' room.id %}">
+        {% csrf_token %}
+        <input type="text" name="content" required>
+        <button type="submit">Send</button>
+    </form>
+</body>
+</html>
